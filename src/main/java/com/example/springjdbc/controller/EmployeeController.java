@@ -2,6 +2,8 @@ package com.example.springjdbc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.springjdbc.domain.Employee;
@@ -15,7 +17,8 @@ public class EmployeeController {
     private EmployeeService service;
 
     @RequestMapping("/execute")
-    public String execute(){
+    public String execute(Model model){
+    // public String execute(){
         Employee employee = new Employee();
         employee.setName("山田 太郎");
         employee.setAge(20);
@@ -37,6 +40,7 @@ public class EmployeeController {
         service.deleteById(26);
 
         service.findAll().forEach(System.out::println);
-        return "finished";
+        //model.addAttribute("employees", service.findAll());
+        return "emp-result";
     }
 }
